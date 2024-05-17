@@ -1,0 +1,19 @@
+syntax = "proto3" ;
+option java_package = "yassinmk.grpc.stubs";
+service  BankService {
+    rpc convert(ConvertCurrencyRequest) returns (ConvertCurrencyResponse); //unary model
+    rpc getCurrencyStream(ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse);//server streamin
+    rpc performSream(stream ConvertCurrencyRequest) returns (ConvertCurrencyResponse);//client streaming
+    rpc fullCurrencyStream(stream ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse);//bidirectional streaming
+}
+message ConvertCurrencyRequest {
+    string currencyFrom = 1;
+    string currencyTo = 2;
+    double amount = 3;
+}
+message ConvertCurrencyResponse {
+    string currencyFrom = 1;
+    string currencyTo = 2;
+    double amount = 3;
+    double result = 4;
+}
